@@ -1,0 +1,2 @@
+{:paths ["src"]
+ :deps  {badigeon/badigeon {:mvn/version "1.1"}}}
