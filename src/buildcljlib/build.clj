@@ -23,8 +23,13 @@ java -cp \"${DIR}/..:${DIR}/../lib/*\" "
                                    (PosixFilePermissions/fromString "rwxr-xr-x"))))
 
 (defn make-bundle [main-namespace lib-name version]
+  (println "cleaning")
   (clean)
+  (println "compiling")
   (compile/compile main-namespace)
   (let [out-path (bundle/make-out-path lib-name version)]
+    (println "bundling")
     (bundle/bundle out-path {:aliases [:aot-output]})
-    (create-bin-file out-path main-namespace)))
+    (println "bin file")
+    (create-bin-file out-path main-namespace))
+  (println "done"))
